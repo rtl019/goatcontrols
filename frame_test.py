@@ -1,8 +1,7 @@
 from depthdata import depthinfo
 import numpy as np
 csv = np.genfromtxt ('frame.csv', delimiter=",")
-x = depthinfo.depth(0,0,0)
-x.printpixel()
+
 col = []
 
 for i in range(0,480,1):
@@ -11,5 +10,6 @@ for i in range(0,480,1):
 
 
 res=np.append([],col)
-
-
+q = res[0:640]
+r=res[640:2*640]
+np.vstack((q,r))
