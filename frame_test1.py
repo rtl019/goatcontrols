@@ -72,15 +72,17 @@ def frame_grid(csv):
 
 
 
-
+a2=(csv[320:330,160:170])
 
 answer=(frame_grid(csv))
 print(answer)
 print(type(answer))
 print(answer.shape)
-
+print(a2)
 while 1:
     array = csv.astype(np.uint8)
+    #cv2.rectangle(array,(0,0),(120,480),(0,0,0),1)
+    cv2.rectangle(array,(0,0),(0,160),(0,0,0),1)
     cv2.imshow('Depth image',array)
 
     k = cv2.waitKey(5) & 0xFF
