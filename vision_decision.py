@@ -42,18 +42,23 @@ if __name__ == "__main__":
     print("Please press ESC key to quit:")
     while 1:
         #get a frame from RGB camera
-        frame = get_video()
+        #frame = get_video()
         #get a frame from depth sensor
         depth = get_depth()
         depth_image = get_depth_image()
         #display RGB image
-        cv2.imshow('RGB image',frame)
+        #cv2.imshow('RGB image',frame)
         #display depth image
         cv2.imshow('Depth image',depth_image)
 
-        m = func(depth([0:480,160:480]))
-        L = func(depth([0:480,0:160]))
-        R = func(depth([0:480,480:640]))
+        m = func(depth[0:480,160:480])
+        L = func(depth[0:480,0:160])
+        R = func(depth[0:480,480:640])
+
+        k = cv2.waitKey(5) & 0xFF
+        if k == 27:
+            print("ESC Key pressed quiting")
+            break
 
 
 
@@ -61,17 +66,15 @@ if __name__ == "__main__":
             print("BOOOM")
         if (m<2):
             print("Too Close")
-        elif ((2.5<m<3.6)&(R>3)):
+
+        elif ((2.5<m<3.4)&(R>3)):
             print("Go around Right")
-        elif(((2.5<m<3.6)&(L>3))):
+        elif(((2.5<m<3.4)&(L>3))):
             print("Go around Left")
         else:
-            print("\n")
+            #print("\n")
             pass
 
         # quit program when 'esc' key is pressed
-        k = cv2.waitKey(5) & 0xFF
-        if k == 27:
-            print("ESC Key pressed quiting")
-            break
+
     cv2.destroyAllWindows()
